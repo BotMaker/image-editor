@@ -1,0 +1,33 @@
+object dib2
+integer x,y,width,height,rotate
+  rotate=real(getText(textbox_rotate))
+  make_backup()
+  if rotate>0 and rotate<=360 then
+    for i=1 to length(images) do
+      dib2 = rotateDibFree(images[i], rotate, getDibPixel(images[i], 0, 0), 0)
+      clearDib(images[i], getDibPixel(images[i],0,0))
+  	 if dib2[DibWidth] = image_width and dib2[DibHeight] = image_height then
+  	   x=0
+  	   y=0
+  	   width=image_width
+  	   height=image_height
+  	   drawDibToDib(images[i],dib2,0,0,x,y,width,height,{},255)
+  	 elsif dib2[DibWidth] > image_width then
+      x=floor((dib2[DibWidth]-image_width)/2)
+      y=floor((dib2[DibHeight]-image_height)/2)
+      width=dib2[DibWidth]-x
+      height=dib2[DibHeight]-y
+      drawDibToDib(images[i],dib2,0,0,x,y,width,height,{},255)
+  	 elsif dib2[DibWidth] < image_width then
+	   x=floor((image_width-dib[DibWidth])/2)
+       y=floor((dib2[DibHeight]-image_height)/2)
+       width=dib2[DibWidth]+x
+       height=dib2[DibHeight]-y
+       drawDibToDib(images[i],dib2,x,0,0,y,width,height,{},255)
+     else
+       puts(1,"erorr")
+  	 end if
+    end for
+  end if
+
+  closeWindow(Window17)

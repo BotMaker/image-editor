@@ -1,0 +1,60 @@
+integer view_mapx,view_mapy,view_mapx_width,view_mapy_height
+view_mapx=1
+view_mapy=1
+view_mapx_width=1
+view_mapy_height=1
+
+procedure resize_window2()
+ sequence size
+ size=getCtlSize( Window2 )
+ -- CWindow1
+ setCtlPosition( CWindow1, 0, 0)
+ setCtlSize( CWindow1, 200, size[2]-100 )
+ -- CWindow2
+ setCtlPosition( CWindow2, 200, 0)
+ setCtlSize( CWindow2, size[1]-208, size[2]-100 )
+ --TreeView1
+ setCtlPosition( TreeView1, 0, 300)
+ setCtlSize( TreeView1, 194, size[2]-408 )
+ --view width\height
+ view_width=size[1]-230
+ view_height=size[2]-122
+ destroy_bitmap(buffer)
+ buffer=0--might catch a bug
+ if view_width>room_width then
+ 	view_width=room_width
+ end if
+ if view_height>room_height then
+ 	view_height=room_height
+ end if
+ if view_width<1 then
+ 	view_width=1
+ end if
+ if view_height<1 then
+ 	view_height=1
+ end if
+ view_mapx_width=floor(view_width/tile_width)+1
+ view_mapy_height=floor(view_height/tile_height)+1
+ buffer=create_bitmap(view_width,view_height)
+ --cwindow2 scroll bars
+ if view_left+view_width>room_width then
+ 	--?view_left+view_width-room_width
+ 	setScrollPos( {CWindow2, SB_HORZ}, (view_left-(view_left+view_width-room_width)) )
+ end if
+ if view_top+view_height>room_height then
+ 	--?view_top+view_height-room_height
+ 	setScrollPos( {CWindow2, SB_VERT}, (view_top-(view_top+view_height-room_height)) )
+ end if
+ setWindowScrollRange ( CWindow2, SB_HORZ, 0,  (room_width-view_width)+(tile_width), tile_width)
+ setWindowScrollRange ( CWindow2, SB_VERT, 0,  (room_height-view_height)+(tile_height), tile_height)
+end procedure
+
+setScrollChange( {CWindow2,SB_HORZ},  tile_width ,(room_width-view_width)+(tile_width))
+setScrollChange( {CWindow2,SB_VERT},  tile_height ,(room_height-view_height)+tile_height)
+
+procedure scroll_cwindow2()
+  view_left=getScrollPos( {CWindow2, SB_HORZ} )
+  view_top=getScrollPos( {CWindow2, SB_VERT} )
+  view_mapx=floor(view_left/tile_width)+1
+  view_mapy=floor(view_top/tile_height)+1
+end procedure

@@ -1,0 +1,46 @@
+basic drawing program base on game maker
+image editor and microsoft drawing
+program
+
+two colour left and right mouse buttons
+
+left colour is outline
+right colour is fill
+
+
+vscreen drawing procedures
+
+line       line thicknes 1 to 5
+rectangle  thicknes 1 to 5  outline fill&outline fill
+round rectangle dont have
+circel     thicknes 1 to 5  outline fill&outline fill 
+fill
+pick color
+pen
+spray
+text
+block select cut copy paste movement tool
+zoom in zoom out
+xoring line
+
+cursor needed
+
+rotate 90 180 270
+flip vert and hor
+
+freedib 26 picture formats
+win32dib bitmap library
+win32lib win32 api
+
+capture all mouse events when the
+mouse button is pressed
+
+file menu  new,open,save,save as,exit;
+  new clear the workspace and set to default values
+  open a picture for editing
+  save a picture to a file
+  save as choose witch file to save the image to
+  exit the program
+edit menu  undo,cut,copy,paste,select all;
+  undo the last change made to the image
+  cut

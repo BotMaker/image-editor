@@ -1,0 +1,58 @@
+<html>
+<head><title>FreeDib</title>
+<style>
+	body { font-family: Arial, sans-serif; }
+	pre { padding: 2ex 2em 2ex 2em; background-color: #FF0; }
+	a { color: #900; text-decoration: none; }
+	a:hover { color: #F00; text-decoration: underline; }
+	dt { margin-top: 1ex; }
+</style>
+</head>
+<body>
+<h1>FreeDib 0.1.1</h1>
+<ul>
+	<li>Copyright &copy; 2004-2005 Tommy Carlier
+	<li><a href="mailto:tommy.carlier@telenet.be">tommy.carlier@telenet.be</a>
+	<li><a href="http://users.telenet.be/tommycarlier">http://users.telenet.be/tommycarlier</a>
+</ul>
+<p>
+	FreeDib is a Euphoria-library that links FreeImage to Win32Dib, so you can load bitmaps from several fileformats.
+</p>
+<p>
+	Thanks go to:
+	<ul>
+		<li><b>Mario Steele</b>, for the idea and some of the code.
+		<li><b>The FreeImage Project</b>, for the FreeImage-library (<a href="http://freeimage.sourceforge.net">http://freeimage.sourceforge.net</a>).
+	</ul>
+	Known bugs:
+	<ul>
+		<li>???
+	</ul>
+</p>
+<p>
+Content: <a href="#version_info">Reading version info</a>, <a href="#load">loading bitmaps</a>.
+</p>
+<a name="version_info"></a><h2>Reading version info</h2>
+<p>
+	FreeDib has a constant that contains information about the version: <code>FreeDibVersion</code>, which is a sequence of length 4:
+	<ul>
+		<li><code>FreeDibVersion[1]</code> is the Major version (integer).
+		<li><code>FreeDibVersion[2]</code> is the Minor version (integer).
+		<li><code>FreeDibVersion[3]</code> is the Patch/Revision (integer).
+		<li><code>FreeDibVersion[4]</code> is the release date (string sequence).
+	</ul>
+</p>
+
+<a name="load"></a><h2>Loading bitmaps</h2>
+<p>
+	You can load a bitmap from several fileformats with the <b>loadFreeDib</b>-function. This function returns 0 if the bitmap couldn't be loaded, or a sequence with the bitmap if successful. The following fileformats are supported: BMP, ICO, GIF, JPEG, PNG, JNG, KOALA, LBM, MNG, PBM, PBMRAW, PCD, PCX, PGM, PGMRAW, PPM, PPMRAW, RAS, TARGA, TIFF, WBMP, PSD, IFF, CUT, DDS, HDR, XBM, XPM.
+<pre>object dib
+
+dib = loadFreeDib("bitmap1.jpg") -- loads the bitmap
+if integer(dib) then
+	-- couldn't load the bitmap
+	abort(0)
+end if</pre>
+</p>
+</body>
+</html>
